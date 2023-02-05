@@ -1,0 +1,22 @@
+(1) Script to extract Normal Traffic
+tshark -r Traffic_Normal.pcap -T fields
+-E separator=";" -e eth.src -e eth.dst
+-e goose.goID -e goose.t -e goose.stNum
+-e goose.sqNum -e goose.boolean
+-e goose.bit_string > TrafficNormal.csv
+
+(2) Script to extract Replay Attacks
+tshark -r Traffic_GOOSE20pcks.pcap
+-T fields -E separator=";" -e eth.src
+-e eth.dst -e goose.goID -e goose.t
+-e goose.stNum -e goose.sqNum
+-e goose.boolean
+-e goose.bit_string > TrafficAttackReplay.csv
+
+(3) Script to extract FDI attacks
+tshark -r test_attack_onGoose_fdi.pcap
+-T fields -E separator=";" -e eth.src
+-e eth.dst -e goose.goID -e goose.t
+-e goose.stNum -e goose.sqNum
+-e goose.boolean
+-e goose.bit_string > TrafficAttackFDI.csv
